@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  api:
+    build:
+      context: .
+      target: builder # En dev, on s'arrête à l'étape "builder" pour avoir tous les outils
+    container_name: nest-docker-test
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+    # En dev, on écrase la commande de prod pour utiliser le hot-reload
+    command: npm run start:dev

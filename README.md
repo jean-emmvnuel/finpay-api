@@ -450,12 +450,8 @@ Authentifie l'utilisateur via son numéro et son code PIN.
 **Réponse `200 OK` :**
 ```json
 {
-  "status": 200,
-  "message": "Portefeuille récupéré avec succès",
-  "wallet": {
-    "amount": 25000.0,
-    "currency": "XOF"
-  }
+  "balance": 3980000,
+  "currency": "XOF"
 }
 ```
 
@@ -490,10 +486,10 @@ Calcule en amont la commission (2%) et le montant total d'une opération.
 
 ---
 
-### 3. 💳 Module Paiement — `/paiement`
+### 3. 💳 Module Paiements — `/payments` (ou `/paiement`)
 
 <details>
-<summary><b>POST /paiement — Effectuer un paiement 🔒 (JWT Requis)</b></summary>
+<summary><b>POST /payments — Effectuer un paiement 🔒 (JWT Requis)</b></summary>
 
 Débite le portefeuille utilisateur de manière atomique et consigne la transaction financière.
 
@@ -532,6 +528,83 @@ Débite le portefeuille utilisateur de manière atomique et consigne la transact
 
 </details>
 
+<details>
+<summary><b>GET /payments — Voir la liste de ses paiements 🔒 (JWT Requis)</b></summary>
+
+Retourne l'historique complet des paiements de l'utilisateur connecté, triés du plus récent au plus ancien.
+
+**Réponse `200 OK` :**
+```json
+[
+  {
+    "id": "a9317079-0c67-4f4c-b17d-e6b72d245465",
+    "amount": 5000,
+    "feeAmount": 100,
+    "totalAmount": 5100,
+    "currency": "XOF",
+    "status": "SUCCES",
+    "createdAt": "2026-09-05T14:10:00.000Z",
+    "updatedAt": "2026-09-05T14:10:00.000Z"
+  }
+]
+```
+
+</details>
+
+<details>
+<summary><b>GET /payments/:id — Voir un paiement précis 🔒 (JWT Requis)</b></summary>
+
+Retourne le détail d'un paiement spécifique et sa transaction liée.
+
+**Réponse `200 OK` :**
+```json
+{
+  "id": "a9317079-0c67-4f4c-b17d-e6b72d245465",
+  "amount": 5000,
+  "feeAmount": 100,
+  "totalAmount": 5100,
+  "currency": "XOF",
+  "status": "SUCCES",
+  "createdAt": "2026-09-05T14:10:00.000Z",
+  "updatedAt": "2026-09-05T14:10:00.000Z",
+  "userId": "2d6e43a3-b571-464f-a9f0-1f951046300b",
+  "transaction": {
+    "id": "b1827079-0c67-4f4c-b17d-e6b72d245466",
+    "amount": 5100,
+    "type": "DEBIT",
+    "currency": "XOF",
+    "createdAt": "2026-09-05T14:10:00.000Z",
+    "paiementId": "a9317079-0c67-4f4c-b17d-e6b72d245465"
+  }
+}
+```
+
+</details>
+
+---
+
+### 4. 📜 Module Transactions — `/transactions`
+
+<details>
+<summary><b>GET /transactions — Historique des transactions de compte 🔒 (JWT Requis)</b></summary>
+
+Permet à l'utilisateur de consulter l'historique complet de tous les mouvements financiers ayant affecté son solde.
+
+**Réponse `200 OK` :**
+```json
+[
+  {
+    "id": "b1827079-0c67-4f4c-b17d-e6b72d245466",
+    "type": "DEBIT",
+    "amount": 1020000,
+    "currency": "XOF",
+    "createdAt": "2026-09-05T14:10:00.000Z"
+  }
+]
+```
+
+</details>
+
 ---
 
 ### 🗺️ Tableau de synthèse des routes
@@ -543,9 +616,12 @@ Débite le portefeuille utilisateur de manière atomique et consigne la transact
 | ![POST](https://img.shields.io/badge/POST-22c55e?style=flat-square) | `/auth/register` | Publique | Inscription & Initialisation automatique du Wallet |
 | ![POST](https://img.shields.io/badge/POST-22c55e?style=flat-square) | `/auth/login` | Publique | Authentification & Obtention du token JWT |
 | ![GET](https://img.shields.io/badge/GET-3b82f6?style=flat-square) | `/auth/me` | 🔒 JWT Bearer | Récupération du profil utilisateur |
-| ![GET](https://img.shields.io/badge/GET-3b82f6?style=flat-square) | `/wallet` | 🔒 JWT Bearer | Consultation du solde du portefeuille en XOF |
+| ![GET](https://img.shields.io/badge/GET-3b82f6?style=flat-square) | `/wallet` | 🔒 JWT Bearer | Consultation du solde du portefeuille (`{ balance, currency }`) |
 | ![POST](https://img.shields.io/badge/POST-22c55e?style=flat-square) | `/wallet/send-quote` | 🔒 JWT Bearer | Simulation des frais de transaction (2%) |
-| ![POST](https://img.shields.io/badge/POST-22c55e?style=flat-square) | `/paiement` | 🔒 JWT Bearer | Exécution transactionnelle du paiement |
+| ![POST](https://img.shields.io/badge/POST-22c55e?style=flat-square) | `/payments` (ou `/paiement`) | 🔒 JWT Bearer | Exécution transactionnelle du paiement |
+| ![GET](https://img.shields.io/badge/GET-3b82f6?style=flat-square) | `/payments` (ou `/paiement`) | 🔒 JWT Bearer | Consultation de la liste des paiements de l'utilisateur |
+| ![GET](https://img.shields.io/badge/GET-3b82f6?style=flat-square) | `/payments/:id` | 🔒 JWT Bearer | Consultation détaillée d'un paiement spécifique |
+| ![GET](https://img.shields.io/badge/GET-3b82f6?style=flat-square) | `/transactions` | 🔒 JWT Bearer | Historique complet des transactions financières |
 
 </div>
 

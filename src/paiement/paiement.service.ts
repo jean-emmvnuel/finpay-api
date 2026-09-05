@@ -5,6 +5,7 @@ import { PrismaService } from '../prisma.service';
 export class PaiementService {
     constructor(private readonly prismaService: PrismaService) {}
 
+    // methode pour effectuer un paiement
     async createPaiement(userId: string, amount: number) {
         if (amount <= 0) {
             throw new BadRequestException('Le montant doit être supérieur à zéro');
@@ -147,4 +148,44 @@ export class PaiementService {
             throw new InternalServerErrorException('Erreur interne lors du traitement du paiement');
         }
     }
+
+    // Récupérer tous les paiements de l'utilisateur
+    async getUserPayments(userId: string) {
+        return this.prismaService.paiement.findMany({
+            where: { userId },
+            select: {
+                id: true,
+                amount: true,
+                feeAmount: true,
+                totalAmount: true,
+                currency: true,
+                status: true,
+                createdAt: true,
+                updatedAt: true,
+            },
+            orderBy: {
+                createdAt: 'desc',
+            },
+        });
+    }
+
+    // Récupérer un paiement précis par son id
+    async getPaymentById(userId: string, paymentId: string) {
+        const payment = await this.prismaService.paiement.findFirst({
+            where: {
+                id: paymentId,
+                userId,
+            },
+            include: {
+                transaction: true,
+            },
+        });
+
+        if (!payment) {
+            throw new NotFoundException('Paiement introuvable');
+        }
+
+        return payment;
+    }
 }
+

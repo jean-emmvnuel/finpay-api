@@ -10,7 +10,7 @@ export class WalletService {
         const wallet = await this.prismaService.wallet.findUnique({
             where: { userId },
             select: {
-                id:true,
+                id: true,
                 userId: true,
                 balance: true,
                 currency: true,
@@ -20,12 +20,8 @@ export class WalletService {
             throw new NotFoundException('Portefeuille non trouvé pour cet utilisateur');
         }
         return {
-            status: 200,
-            message: "Portefeuille récupéré avec succès",
-            wallet: {
-                amount: wallet.balance,
-                currency: wallet.currency,
-            } ,
+            balance: wallet.balance,
+            currency: wallet.currency,
         };
     }
 

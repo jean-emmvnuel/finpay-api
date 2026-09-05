@@ -7,6 +7,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { utilities as nestWinstonModuleUtilities, WinstonModule } from 'nest-winston';
 import { WalletModule } from './wallet/wallet.module';
 import { PaiementModule } from './paiement/paiement.module';
+import { TransactionModule } from './transaction/transaction.module';
 import * as winston from 'winston';
 
 @Module({
@@ -43,6 +44,7 @@ import * as winston from 'winston';
     }]),
     WalletModule,
     PaiementModule,
+    TransactionModule,
   ],
   controllers: [AppController],
   providers: [

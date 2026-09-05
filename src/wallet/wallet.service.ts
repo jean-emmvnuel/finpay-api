@@ -29,4 +29,18 @@ export class WalletService {
             throw new NotFoundException('Erreur lors de la récupération du portefeuille');
         }
     }
+
+    async sendQuote(amount: number) {
+        if (amount <= 0) {
+            throw new NotFoundException('Le montant doit être supérieur à zéro');
+        }
+        console.log("Montant envoyé pour le devis :", amount);
+        const fee = amount * 0.02; // 2% fee
+        const totalAmount = amount + fee;
+        return {
+            "amount" : amount,
+            "fee" : fee,
+            "totalAmount" : totalAmount,
+        }
+    }
 }

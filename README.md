@@ -1,10 +1,29 @@
-# 💸 FinPay API
+<div align="center">
 
-> **API REST de paiement mobile** — Backend NestJS avec authentification JWT, gestion de portefeuille et sécurité renforcée.
+<!-- HEADER ANIMÉ -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=💸%20FinPay%20API&fontSize=60&fontColor=ffffff&fontAlignY=38&desc=API%20REST%20de%20paiement%20mobile%20avec%20NestJS&descAlignY=60&descColor=a78bfa&animation=fadeIn" width="100%"/>
+
+<!-- TYPING ANIMÉ -->
+<a href="https://github.com/jean-emmvnuel/finpay-api">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&pause=1000&color=A78BFA&center=true&vCenter=true&width=600&lines=NestJS+%2B+PostgreSQL+%2B+Prisma+ORM;Authentification+JWT+%2B+bcrypt;Portefeuille+XOF+%E2%80%94+Paiement+Mobile;S%C3%A9curis%C3%A9+%2B+Scalable+%2B+Dockeris%C3%A9" alt="Typing SVG" />
+</a>
+
+<br/>
+
+<!-- BADGES PRINCIPAUX -->
+<img src="https://img.shields.io/badge/version-1.0.0-a78bfa?style=for-the-badge&logo=github&logoColor=white"/>
+<img src="https://img.shields.io/badge/license-UNLICENSED-ef4444?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/status-active-22c55e?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/port-3001-f59e0b?style=for-the-badge"/>
+
+</div>
 
 ---
 
 ## 📋 Table des matières
+
+<details>
+<summary><b>🔽 Voir le sommaire</b></summary>
 
 - [Aperçu](#-aperçu)
 - [Stack technique](#-stack-technique)
@@ -20,32 +39,47 @@
 - [Scripts disponibles](#-scripts-disponibles)
 - [Auteur](#-auteur)
 
+</details>
+
 ---
 
 ## 🌍 Aperçu
 
 **FinPay API** est une API REST développée avec [NestJS](https://nestjs.com/) pour gérer des comptes utilisateurs et des portefeuilles financiers dans un contexte de **paiement mobile** (inspiré de la Côte d'Ivoire — numéros à 10 chiffres).
 
-Chaque utilisateur inscrit dispose automatiquement d'un **portefeuille (Wallet)** en **XOF (Franc CFA)** créé à l'inscription.
+> Chaque utilisateur inscrit dispose automatiquement d'un **portefeuille (Wallet)** en **XOF (Franc CFA)** créé à l'inscription.
 
 ---
 
 ## 🛠 Stack technique
 
-| Technologie         | Rôle                                      | Version |
-|---------------------|-------------------------------------------|---------|
-| **NestJS**          | Framework principal                       | ^11     |
-| **TypeScript**      | Typage statique                           | ^5.7    |
-| **Prisma ORM**      | Accès base de données                     | ^7.2    |
-| **PostgreSQL**      | Base de données relationnelle             | —       |
-| **Supabase**        | Hébergement PostgreSQL (cloud)            | —       |
-| **JWT (Passport)**  | Authentification par token                | —       |
-| **bcrypt**          | Hachage du code secret                    | ^6      |
-| **Helmet**          | Sécurité des en-têtes HTTP               | ^8      |
-| **Throttler**       | Rate limiting (anti-brute force)          | ^6      |
-| **Winston**         | Logging structuré                         | ^3      |
-| **Swagger**         | Documentation API auto-générée            | ^11     |
-| **Docker**          | Conteneurisation                          | —       |
+<div align="center">
+
+<!-- SKILL ICONS ANIMÉS -->
+<img src="https://skillicons.dev/icons?i=nestjs,ts,postgres,prisma,docker,jest&perline=6&theme=dark" alt="Tech Stack" />
+
+</div>
+
+<br/>
+
+<div align="center">
+
+| Technologie | Rôle | Badge |
+|---|---|---|
+| **NestJS** | Framework principal | ![NestJS](https://img.shields.io/badge/NestJS-^11-e0234e?style=flat-square&logo=nestjs&logoColor=white) |
+| **TypeScript** | Typage statique | ![TypeScript](https://img.shields.io/badge/TypeScript-^5.7-3178c6?style=flat-square&logo=typescript&logoColor=white) |
+| **Prisma ORM** | Accès base de données | ![Prisma](https://img.shields.io/badge/Prisma-^7.2-2d3748?style=flat-square&logo=prisma&logoColor=white) |
+| **PostgreSQL** | Base de données | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-latest-336791?style=flat-square&logo=postgresql&logoColor=white) |
+| **Supabase** | Hébergement BDD cloud | ![Supabase](https://img.shields.io/badge/Supabase-cloud-3ecf8e?style=flat-square&logo=supabase&logoColor=white) |
+| **JWT + Passport** | Authentification | ![JWT](https://img.shields.io/badge/JWT-Bearer-000000?style=flat-square&logo=jsonwebtokens&logoColor=white) |
+| **bcrypt** | Hachage code secret | ![bcrypt](https://img.shields.io/badge/bcrypt-salt=12-f59e0b?style=flat-square) |
+| **Helmet** | Sécurité HTTP | ![Helmet](https://img.shields.io/badge/Helmet-^8-6366f1?style=flat-square) |
+| **Throttler** | Rate limiting | ![Throttler](https://img.shields.io/badge/Throttler-10req%2Fmin-ef4444?style=flat-square) |
+| **Winston** | Logging structuré | ![Winston](https://img.shields.io/badge/Winston-logs-22c55e?style=flat-square) |
+| **Swagger** | Docs API auto-générée | ![Swagger](https://img.shields.io/badge/Swagger-UI-85ea2d?style=flat-square&logo=swagger&logoColor=black) |
+| **Docker** | Conteneurisation | ![Docker](https://img.shields.io/badge/Docker-ready-2496ed?style=flat-square&logo=docker&logoColor=white) |
+
+</div>
 
 ---
 
@@ -53,12 +87,12 @@ Chaque utilisateur inscrit dispose automatiquement d'un **portefeuille (Wallet)*
 
 ```
 finpay-api/
-├── prisma/
+├── 📁 prisma/
 │   ├── schema.prisma          # Modèles de données (User, Wallet)
-│   └── migrations/            # Historique des migrations
-├── src/
-│   ├── auth/                  # Module d'authentification
-│   │   ├── dto/
+│   └── 📁 migrations/         # Historique des migrations
+├── 📁 src/
+│   ├── 📁 auth/               # Module d'authentification
+│   │   ├── 📁 dto/
 │   │   │   ├── register.dto.ts
 │   │   │   └── login.dto.ts
 │   │   ├── auth.controller.ts # Routes : /auth/*
@@ -66,13 +100,11 @@ finpay-api/
 │   │   ├── auth.module.ts
 │   │   ├── jwt.strategy.ts    # Stratégie JWT Passport
 │   │   └── jwt.auth.guard.ts  # Guard JWT
-│   ├── wallet/                # Module portefeuille
+│   ├── 📁 wallet/             # Module portefeuille
 │   │   ├── wallet.controller.ts
 │   │   ├── wallet.service.ts
 │   │   └── wallet.module.ts
 │   ├── app.module.ts          # Module racine (throttler, logger, modules)
-│   ├── app.controller.ts
-│   ├── app.service.ts
 │   ├── prisma.service.ts      # Service Prisma partagé
 │   └── main.ts                # Bootstrap (helmet, CORS, Swagger, pipes)
 ├── .env                       # Variables d'environnement
@@ -88,12 +120,12 @@ finpay-api/
 ```prisma
 model User {
   id        String    @id @default(uuid())
-  number    String    @unique   // Numéro mobile (10 chiffres, ex: Côte d'Ivoire)
+  number    String    @unique   // Numéro mobile (10 chiffres)
   fullname  String
   role      UserRole  @default(USER)
   createdAt DateTime  @default(now())
-  code      String                    // Code secret haché (bcrypt)
-  wallet    Wallet?                   // Relation one-to-one
+  code      String              // Code secret haché (bcrypt)
+  wallet    Wallet?             // Relation one-to-one
 }
 
 enum UserRole {
@@ -113,9 +145,7 @@ model Wallet {
 }
 ```
 
-### Relations
-- **User → Wallet** : Relation **one-to-one** — chaque utilisateur a exactement un portefeuille
-- Le wallet est **créé automatiquement** à l'inscription avec un solde initial de `0 XOF`
+> **🔗 Relation** : `User → Wallet` est **one-to-one** — le wallet est créé automatiquement à l'inscription avec `0 XOF`.
 
 ---
 
@@ -123,28 +153,28 @@ model Wallet {
 
 ### Prérequis
 
-- [Node.js](https://nodejs.org/) >= 18
-- [npm](https://www.npmjs.com/) >= 9
-- Une base de données PostgreSQL (ou un projet [Supabase](https://supabase.com/))
+![Node](https://img.shields.io/badge/Node.js->=18-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![npm](https://img.shields.io/badge/npm->=9-cb3837?style=flat-square&logo=npm&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-required-336791?style=flat-square&logo=postgresql&logoColor=white)
 
 ### Étapes
 
 ```bash
-# 1. Cloner le dépôt
+# 1️⃣ Cloner le dépôt
 git clone https://github.com/jean-emmvnuel/finpay-api.git
 cd finpay-api
 
-# 2. Installer les dépendances
+# 2️⃣ Installer les dépendances
 npm install
 
-# 3. Configurer les variables d'environnement
+# 3️⃣ Configurer les variables d'environnement
 cp .env.example .env
-# Remplir les valeurs dans .env
+# → Remplir les valeurs dans .env
 
-# 4. Appliquer les migrations Prisma
+# 4️⃣ Appliquer les migrations Prisma
 npx prisma migrate deploy
 
-# 5. Générer le client Prisma
+# 5️⃣ Générer le client Prisma
 npx prisma generate
 ```
 
@@ -155,48 +185,53 @@ npx prisma generate
 Créer un fichier `.env` à la racine du projet :
 
 ```env
-# URL de connexion PostgreSQL (via PgBouncer pour les requêtes)
+# 🗄️ URL de connexion PostgreSQL (via PgBouncer pour les requêtes)
 DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/postgres?pgbouncer=true"
 
-# URL directe (pour les migrations Prisma)
+# 🔗 URL directe (pour les migrations Prisma)
 DIRECT_URL="postgresql://USER:PASSWORD@HOST:5432/postgres"
 
-# Clé secrète pour signer les tokens JWT
+# 🔑 Clé secrète pour signer les tokens JWT
 JWT_SECRET="votre_secret_jwt_ici"
 
-# Port d'écoute du serveur (optionnel, défaut : 3001)
+# 🌐 Port d'écoute du serveur (défaut : 3001)
 PORT=3001
 
-# URL du frontend autorisé pour CORS (optionnel, défaut : http://localhost:3000)
+# 🔒 URL du frontend autorisé pour CORS (défaut : http://localhost:3000)
 FRONTEND_URL="http://localhost:3000"
 ```
 
-> ⚠️ **Ne jamais committer le fichier `.env` en production.** Assurez-vous qu'il est dans `.gitignore`.
+> ⚠️ **Ne jamais committer le fichier `.env`.** Il doit être dans `.gitignore`.
 
 ---
 
 ## ▶️ Lancer l'application
 
 ```bash
-# Développement (avec hot-reload via nodemon)
+# 🔧 Développement (hot-reload via nodemon)
 npm run start:dev
 
-# Production
+# 🏭 Production
 npm run build
 npm run start:prod
 ```
 
-Le serveur démarre sur le port défini dans `PORT` (défaut : **3001**).
+Le serveur démarre sur **`http://localhost:3001`**
 
 ---
 
 ## 📡 API Endpoints
 
-> **Base URL** : `http://localhost:3001`
+<div align="center">
+
+![Base URL](https://img.shields.io/badge/Base%20URL-http%3A%2F%2Flocalhost%3A3001-a78bfa?style=for-the-badge)
+
+</div>
 
 ### 🔐 Authentification — `/auth`
 
-#### `POST /auth/register` — Inscription
+<details>
+<summary><b>POST /auth/register — Inscription</b></summary>
 
 Crée un nouvel utilisateur et son portefeuille. Retourne un token JWT.
 
@@ -209,13 +244,13 @@ Crée un nouvel utilisateur et son portefeuille. Retourne un token JWT.
 }
 ```
 
-| Champ      | Type   | Obligatoire | Contraintes                    |
-|------------|--------|-------------|--------------------------------|
-| `fullname` | string | ✅           | Entre 7 et 70 caractères       |
-| `number`   | string | ✅           | Exactement 10 chiffres         |
-| `code`     | string | ✅           | Exactement 4 caractères        |
+| Champ | Type | Obligatoire | Contraintes |
+|---|---|:---:|---|
+| `fullname` | `string` | ✅ | 7 à 70 caractères |
+| `number` | `string` | ✅ | Exactement 10 chiffres |
+| `code` | `string` | ✅ | Exactement 4 caractères |
 
-**Réponse — `201 Created` :**
+**Réponse `201 Created` :**
 ```json
 {
   "status": 201,
@@ -230,13 +265,15 @@ Crée un nouvel utilisateur et son portefeuille. Retourne un token JWT.
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
+> 💡 `fullname` → converti en **MAJUSCULES** automatiquement  
+> 💡 `code` → haché avec **bcrypt (salt=12)** avant stockage
 
-> 💡 Le `fullname` est automatiquement converti en **MAJUSCULES**.
-> 💡 Le `code` est **haché avec bcrypt** (salt = 12) avant stockage.
+</details>
 
 ---
 
-#### `POST /auth/login` — Connexion
+<details>
+<summary><b>POST /auth/login — Connexion</b></summary>
 
 Authentifie un utilisateur existant. Retourne un token JWT.
 
@@ -248,7 +285,7 @@ Authentifie un utilisateur existant. Retourne un token JWT.
 }
 ```
 
-**Réponse — `200 OK` :**
+**Réponse `200 OK` :**
 ```json
 {
   "status": 200,
@@ -264,26 +301,26 @@ Authentifie un utilisateur existant. Retourne un token JWT.
 }
 ```
 
-**Erreurs possibles :**
+**Erreurs :**
 
-| Code | Raison                              |
-|------|-------------------------------------|
-| `401 Unauthorized` | Code secret incorrect          |
-| `404 Not Found`    | Numéro non trouvé              |
-| `409 Conflict`     | Numéro déjà utilisé (register) |
+| Code | Raison |
+|---|---|
+| `401 Unauthorized` | Code secret incorrect |
+| `404 Not Found` | Numéro non trouvé |
+
+</details>
 
 ---
 
-#### `GET /auth/me` — Profil utilisateur 🔒
-
-Retourne les informations de l'utilisateur connecté.
+<details>
+<summary><b>GET /auth/me — Profil utilisateur 🔒 JWT requis</b></summary>
 
 **Headers requis :**
 ```
 Authorization: Bearer <token>
 ```
 
-**Réponse — `200 OK` :**
+**Réponse `200 OK` :**
 ```json
 {
   "status": 200,
@@ -297,20 +334,21 @@ Authorization: Bearer <token>
 }
 ```
 
+</details>
+
 ---
 
 ### 💰 Portefeuille — `/wallet`
 
-#### `GET /wallet` — Consulter son portefeuille 🔒
-
-Retourne le solde et la devise du portefeuille de l'utilisateur connecté.
+<details>
+<summary><b>GET /wallet — Consulter son portefeuille 🔒 JWT requis</b></summary>
 
 **Headers requis :**
 ```
 Authorization: Bearer <token>
 ```
 
-**Réponse — `200 OK` :**
+**Réponse `200 OK` :**
 ```json
 {
   "status": 200,
@@ -322,32 +360,40 @@ Authorization: Bearer <token>
 }
 ```
 
+</details>
+
 ---
 
-### Résumé des routes
+### 🗺️ Résumé des routes
 
-| Méthode | Route            | Auth requise | Description                    |
-|---------|------------------|:------------:|--------------------------------|
-| `POST`  | `/auth/register` | ❌           | Créer un compte utilisateur    |
-| `POST`  | `/auth/login`    | ❌           | Se connecter                   |
-| `GET`   | `/auth/me`       | ✅ JWT       | Voir son profil                |
-| `GET`   | `/wallet`        | ✅ JWT       | Consulter son portefeuille     |
+<div align="center">
+
+| Méthode | Route | Auth | Description |
+|:---:|---|:---:|---|
+| ![POST](https://img.shields.io/badge/POST-22c55e?style=flat-square) | `/auth/register` | ❌ | Créer un compte |
+| ![POST](https://img.shields.io/badge/POST-22c55e?style=flat-square) | `/auth/login` | ❌ | Se connecter |
+| ![GET](https://img.shields.io/badge/GET-3b82f6?style=flat-square) | `/auth/me` | ✅ JWT | Voir son profil |
+| ![GET](https://img.shields.io/badge/GET-3b82f6?style=flat-square) | `/wallet` | ✅ JWT | Consulter le portefeuille |
+
+</div>
 
 ---
 
 ## 🔒 Sécurité
 
-L'API embarque plusieurs couches de sécurité :
+<div align="center">
 
-| Mécanisme              | Description                                                                 |
-|------------------------|-----------------------------------------------------------------------------|
-| **Helmet**             | Sécurise les en-têtes HTTP (XSS, clickjacking, sniffing, etc.)             |
-| **CORS**               | Restreint les origines autorisées via `FRONTEND_URL`                        |
-| **Rate Limiting**      | Max **10 requêtes / minute / IP** (via `@nestjs/throttler`)                 |
-| **JWT Bearer Token**   | Authentification stateless avec signature HS256                             |
-| **bcrypt (salt=12)**   | Hachage sécurisé du code secret utilisateur                                 |
-| **ValidationPipe**     | Rejette toute propriété non déclarée dans les DTOs (`forbidNonWhitelisted`) |
-| **Logs (Winston)**     | Logging console + fichier `error.log` pour les erreurs                      |
+| Mécanisme | Description | Badge |
+|---|---|---|
+| **Helmet** | Sécurise les en-têtes HTTP (XSS, clickjacking...) | ![Helmet](https://img.shields.io/badge/Helmet-ON-22c55e?style=flat-square) |
+| **CORS** | Restreint les origines via `FRONTEND_URL` | ![CORS](https://img.shields.io/badge/CORS-Restricted-f59e0b?style=flat-square) |
+| **Rate Limiting** | Max **10 req/min/IP** | ![Throttler](https://img.shields.io/badge/Throttler-10%2Fmin-ef4444?style=flat-square) |
+| **JWT Bearer** | Authentification stateless HS256 | ![JWT](https://img.shields.io/badge/JWT-HS256-a78bfa?style=flat-square) |
+| **bcrypt** | Hachage sécurisé du code secret | ![bcrypt](https://img.shields.io/badge/bcrypt-salt=12-3b82f6?style=flat-square) |
+| **ValidationPipe** | Rejette les champs inconnus des DTOs | ![Validation](https://img.shields.io/badge/Whitelist-ON-22c55e?style=flat-square) |
+| **Winston Logs** | Logs console + fichier `error.log` | ![Winston](https://img.shields.io/badge/Logs-Winston-6366f1?style=flat-square) |
+
+</div>
 
 ---
 
@@ -355,28 +401,27 @@ L'API embarque plusieurs couches de sécurité :
 
 En mode **développement**, l'interface Swagger UI est disponible à :
 
-```
-http://localhost:3001/api
-```
+<div align="center">
 
-> La documentation Swagger est **désactivée en production** (`NODE_ENV=production`).
+[![Swagger](https://img.shields.io/badge/Swagger%20UI-http%3A%2F%2Flocalhost%3A3001%2Fapi-85ea2d?style=for-the-badge&logo=swagger&logoColor=black)](http://localhost:3001/api)
+
+</div>
+
+> 🚫 La documentation Swagger est **désactivée automatiquement en production** (`NODE_ENV=production`).
 
 ---
 
 ## 🐳 Docker
 
-### Développement avec Docker
-
 ```bash
+# Lancer en développement avec Docker
 docker-compose up
 ```
 
-Le conteneur :
-- Expose le port **3001**
-- Monte le code source en volume (hot-reload actif)
-- Charge automatiquement le fichier `.env`
-
-### Structure Docker
+**Le conteneur :**
+- 📡 Expose le port **3001**
+- 🔄 Monte le code source en volume (hot-reload actif)
+- 🔐 Charge automatiquement le fichier `.env`
 
 ```yaml
 services:
@@ -396,35 +441,41 @@ services:
 ## 📜 Scripts disponibles
 
 ```bash
-npm run start:dev      # Démarrage en développement (nodemon + hot-reload)
-npm run start:prod     # Démarrage en production (dist compilé)
-npm run build          # Compilation TypeScript vers dist/
-npm run format         # Formatage du code (Prettier)
-npm run lint           # Lint et auto-correction (ESLint)
-npm run test           # Tests unitaires (Jest)
-npm run test:cov       # Couverture de tests
-npm run test:e2e       # Tests end-to-end
+npm run start:dev      # 🔧 Développement (nodemon + hot-reload)
+npm run start:prod     # 🏭 Production (dist compilé)
+npm run build          # 📦 Compilation TypeScript → dist/
+npm run format         # ✨ Formatage du code (Prettier)
+npm run lint           # 🔍 Lint et auto-correction (ESLint)
+npm run test           # 🧪 Tests unitaires (Jest)
+npm run test:cov       # 📊 Couverture de tests
+npm run test:e2e       # 🔁 Tests end-to-end
 ```
 
-**Commandes Prisma utiles :**
+**Commandes Prisma :**
 
 ```bash
-npx prisma migrate dev     # Créer et appliquer une migration (dev)
-npx prisma migrate deploy  # Appliquer les migrations en production
-npx prisma generate        # Régénérer le client Prisma
-npx prisma studio          # Interface graphique pour la BDD
-npx prisma validate        # Valider le schéma Prisma
+npx prisma migrate dev     # 🆕 Créer et appliquer une migration (dev)
+npx prisma migrate deploy  # 🚀 Appliquer les migrations en production
+npx prisma generate        # ⚙️  Régénérer le client Prisma
+npx prisma studio          # 🖥️  Interface graphique pour la BDD
+npx prisma validate        # ✅ Valider le schéma Prisma
 ```
 
 ---
 
 ## 👤 Auteur
 
-**Jean Emmanuel AHOSSI**
-🔗 [github.com/jean-emmvnuel](https://github.com/jean-emmvnuel)
-
----
-
 <div align="center">
-  <sub>FinPay API — v1.0.0 · NestJS · PostgreSQL · Prisma</sub>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=120&section=footer" width="100%"/>
+
+**Jean Emmanuel AHOSSI**
+
+[![GitHub](https://img.shields.io/badge/GitHub-jean--emmvnuel-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jean-emmvnuel)
+
+![FinPay](https://img.shields.io/badge/FinPay%20API-v1.0.0-a78bfa?style=for-the-badge)
+![NestJS](https://img.shields.io/badge/NestJS-e0234e?style=for-the-badge&logo=nestjs&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2d3748?style=for-the-badge&logo=prisma&logoColor=white)
+
 </div>

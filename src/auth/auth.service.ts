@@ -1,4 +1,4 @@
-import {  Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import {  ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { registerDto } from './dto/register.dto';
@@ -16,10 +16,7 @@ export class AuthService {
 
         const existingNumber = await this.prisma.user.findUnique({ where: { number } });
         if (existingNumber) {
-            return {
-                status : 409,
-                message : "ce numero est deja associé à un compte"
-            }
+            throw new ConflictException("Ce numero est deja associé à un compte");
         }
 
         const hashedCode = await bcrypt.hash(code, 12);
@@ -28,7 +25,13 @@ export class AuthService {
             data: {
                 fullname: fullnames,
                 number,
-                code: hashedCode
+                code: hashedCode,
+                wallet: {
+                    create: {
+                        balance: 0,
+                        currency: "XOF",
+                    },
+                },
             },
             select: {
                 id: true,
@@ -37,14 +40,6 @@ export class AuthService {
                 role: true,
                 createdAt: true,
             },
-        });
-        // creer un wallet pour l'utilisateur
-        await this.prisma.wallet.create({
-            data: {
-                userId: user.id,
-                balance: 0,
-                currency: "XOF"
-            }
         });
         const payload = {
             sub: user.id,
@@ -59,6 +54,7 @@ export class AuthService {
         }
     }
 
+    // login service
     async login(data: loginDto) {
         const { number, code } = data;
 
@@ -74,16 +70,18 @@ export class AuthService {
             },
         });
 
-        if (user) {
-            const isCodeValid = await bcrypt.compare(code, user.code);
-            if (!isCodeValid) {
-                throw new UnauthorizedException("Identifiants incorrects");
-            }
-        }
-
         if (!user) {
             throw new NotFoundException("Utilisateur non trouvé");
         }
+
+        
+        const isCodeValid = await bcrypt.compare(code, user.code);
+        if (!isCodeValid) {
+            throw new UnauthorizedException("Identifiants incorrects");
+        }
+        
+
+        
 
         const payload = {
             sub: user.id,
@@ -104,6 +102,7 @@ export class AuthService {
         }
     }
 
+    // valider un utilisateur apres connexion
     async validateUser(userId: string) {
         const user = await this.prisma.user.findUnique({
             where: { id: userId },

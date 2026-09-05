@@ -138,6 +138,27 @@ exports.Prisma.WalletScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.PaiementScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  feeAmount: 'feeAmount',
+  totalAmount: 'totalAmount',
+  currency: 'currency',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.TransactionScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  type: 'type',
+  currency: 'currency',
+  createdAt: 'createdAt',
+  paiementId: 'paiementId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -153,9 +174,22 @@ exports.UserRole = exports.$Enums.UserRole = {
   SYSTEM: 'SYSTEM'
 };
 
+exports.PaymentStatus = exports.$Enums.PaymentStatus = {
+  EN_COURS: 'EN_COURS',
+  SUCCES: 'SUCCES',
+  ECHOUE: 'ECHOUE'
+};
+
+exports.TransactionType = exports.$Enums.TransactionType = {
+  DEBIT: 'DEBIT',
+  CREDIT: 'CREDIT'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
-  Wallet: 'Wallet'
+  Wallet: 'Wallet',
+  Paiement: 'Paiement',
+  Transaction: 'Transaction'
 };
 
 /**

@@ -111,6 +111,27 @@ exports.Prisma.WalletScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.PaiementScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  feeAmount: 'feeAmount',
+  totalAmount: 'totalAmount',
+  currency: 'currency',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.TransactionScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  type: 'type',
+  currency: 'currency',
+  createdAt: 'createdAt',
+  paiementId: 'paiementId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -126,9 +147,22 @@ exports.UserRole = exports.$Enums.UserRole = {
   SYSTEM: 'SYSTEM'
 };
 
+exports.PaymentStatus = exports.$Enums.PaymentStatus = {
+  EN_COURS: 'EN_COURS',
+  SUCCES: 'SUCCES',
+  ECHOUE: 'ECHOUE'
+};
+
+exports.TransactionType = exports.$Enums.TransactionType = {
+  DEBIT: 'DEBIT',
+  CREDIT: 'CREDIT'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
-  Wallet: 'Wallet'
+  Wallet: 'Wallet',
+  Paiement: 'Paiement',
+  Transaction: 'Transaction'
 };
 /**
  * Create the Client
@@ -138,10 +172,10 @@ const config = {
   "clientVersion": "7.3.0",
   "engineVersion": "9d6ad21cbbceab97458517b147a6a09ff43aa735",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id        String   @id @default(uuid())\n  number    String   @unique // cas civ donc 10 chiffres\n  fullname  String\n  role      UserRole @default(USER)\n  createdAt DateTime @default(now())\n  code      String\n  wallet    Wallet?\n}\n\nenum UserRole {\n  USER\n  ADMIN\n  SYSTEM\n}\n\nmodel Wallet {\n  id        String   @id @default(uuid())\n  userId    String   @unique\n  balance   Float    @default(0)\n  currency  String   @default(\"XOF\")\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  user User @relation(fields: [userId], references: [id])\n}\n"
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id        String   @id @default(uuid())\n  number    String   @unique // cas civ donc 10 chiffres\n  fullname  String\n  role      UserRole @default(USER)\n  createdAt DateTime @default(now())\n  code      String\n  wallet    Wallet?\n\n  paiements Paiement[]\n}\n\nenum UserRole {\n  USER\n  ADMIN\n  SYSTEM\n}\n\nmodel Wallet {\n  id        String   @id @default(uuid())\n  userId    String   @unique\n  balance   Float    @default(0)\n  currency  String   @default(\"XOF\")\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  user User @relation(fields: [userId], references: [id])\n}\n\nmodel Paiement {\n  id          String        @id @default(uuid())\n  amount      Float\n  feeAmount   Float\n  totalAmount Float\n  currency    String        @default(\"XOF\")\n  status      PaymentStatus @default(EN_COURS)\n  createdAt   DateTime      @default(now())\n  updatedAt   DateTime      @updatedAt\n  userId      String\n  user        User          @relation(fields: [userId], references: [id])\n\n  transaction Transaction?\n}\n\nenum PaymentStatus {\n  EN_COURS\n  SUCCES\n  ECHOUE\n}\n\nmodel Transaction {\n  id        String          @id @default(uuid())\n  amount    Float\n  type      TransactionType\n  currency  String          @default(\"XOF\")\n  createdAt DateTime        @default(now())\n\n  paiementId String   @unique\n  paiement   Paiement @relation(fields: [paiementId], references: [id])\n}\n\nenum TransactionType {\n  DEBIT\n  CREDIT\n}\n"
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fullname\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"UserRole\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"wallet\",\"kind\":\"object\",\"type\":\"Wallet\",\"relationName\":\"UserToWallet\"}],\"dbName\":null},\"Wallet\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"balance\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"currency\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"UserToWallet\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fullname\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"UserRole\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"wallet\",\"kind\":\"object\",\"type\":\"Wallet\",\"relationName\":\"UserToWallet\"},{\"name\":\"paiements\",\"kind\":\"object\",\"type\":\"Paiement\",\"relationName\":\"PaiementToUser\"}],\"dbName\":null},\"Wallet\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"balance\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"currency\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"UserToWallet\"}],\"dbName\":null},\"Paiement\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amount\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"feeAmount\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"totalAmount\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"currency\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"PaymentStatus\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"PaiementToUser\"},{\"name\":\"transaction\",\"kind\":\"object\",\"type\":\"Transaction\",\"relationName\":\"PaiementToTransaction\"}],\"dbName\":null},\"Transaction\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amount\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"TransactionType\"},{\"name\":\"currency\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"paiementId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"paiement\",\"kind\":\"object\",\"type\":\"Paiement\",\"relationName\":\"PaiementToTransaction\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.compilerWasm = {
       getRuntime: async () => require('./query_compiler_fast_bg.js'),
